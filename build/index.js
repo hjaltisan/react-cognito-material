@@ -51204,7 +51204,13 @@ var RegistrationForm = function (_React$Component) {
       password2: ''
     }, _this.handleChange = function (name) {
       return function (event) {
-        _this.setState(_defineProperty({}, name, event.target.value));
+        if (_this.props.useEmailAsName && name === 'email') {
+          var _this$setState;
+
+          _this.setState((_this$setState = {}, _defineProperty(_this$setState, 'name', event.target.value), _defineProperty(_this$setState, name, event.target.value), _this$setState));
+        } else {
+          _this.setState(_defineProperty({}, name, event.target.value));
+        }
       };
     }, _this.handleRegister = function () {
       console.log('handleRegister', _this.state);
@@ -51237,7 +51243,7 @@ var RegistrationForm = function (_React$Component) {
         __WEBPACK_IMPORTED_MODULE_6_material_ui_Card___default.a,
         _defineProperty({ className: classes.authForm, __source: {
             fileName: _jsxFileName,
-            lineNumber: 58
+            lineNumber: 65
           },
           __self: this
         }, '__self', this),
@@ -51245,7 +51251,7 @@ var RegistrationForm = function (_React$Component) {
           title: 'Registration',
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 59
+            lineNumber: 66
           },
           __self: this
         }, '__self', this)),
@@ -51254,7 +51260,7 @@ var RegistrationForm = function (_React$Component) {
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 63
+              lineNumber: 70
             },
             __self: this
           }, '__self', this),
@@ -51262,7 +51268,7 @@ var RegistrationForm = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_8_material_ui_Typography___default.a,
             _defineProperty({ component: 'h2', type: 'headline', gutterBottom: true, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 64
+                lineNumber: 71
               },
               __self: this
             }, '__self', this),
@@ -51272,7 +51278,7 @@ var RegistrationForm = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_8_material_ui_Typography___default.a,
             _defineProperty({ component: 'p', __source: {
                 fileName: _jsxFileName,
-                lineNumber: 67
+                lineNumber: 74
               },
               __self: this
             }, '__self', this),
@@ -51283,7 +51289,7 @@ var RegistrationForm = function (_React$Component) {
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 72
+              lineNumber: 79
             },
             __self: this
           }, '__self', this),
@@ -51292,11 +51298,11 @@ var RegistrationForm = function (_React$Component) {
             _defineProperty({
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 73
+                lineNumber: 80
               },
               __self: this
             }, '__self', this),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_TextField___default.a, _defineProperty({
+            this.props.useEmailAsName ? null : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_TextField___default.a, _defineProperty({
               id: 'name',
               label: 'Name',
               className: classes.textField,
@@ -51309,7 +51315,7 @@ var RegistrationForm = function (_React$Component) {
               helperText: error.name,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 74
+                lineNumber: 82
               },
               __self: this
             }, '__self', this)),
@@ -51326,7 +51332,7 @@ var RegistrationForm = function (_React$Component) {
               helperText: error.email,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 86
+                lineNumber: 94
               },
               __self: this
             }, '__self', this)),
@@ -51344,7 +51350,7 @@ var RegistrationForm = function (_React$Component) {
               helperText: error.password,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 98
+                lineNumber: 106
               },
               __self: this
             }, '__self', this)),
@@ -51362,7 +51368,7 @@ var RegistrationForm = function (_React$Component) {
               helperText: error.password,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 111
+                lineNumber: 119
               },
               __self: this
             }, '__self', this))
@@ -51373,7 +51379,7 @@ var RegistrationForm = function (_React$Component) {
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 128
+              lineNumber: 136
             },
             __self: this
           }, '__self', this),
@@ -51381,7 +51387,7 @@ var RegistrationForm = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_5_material_ui_Grid___default.a,
             _defineProperty({ container: true, direction: 'row', justify: 'space-around', __source: {
                 fileName: _jsxFileName,
-                lineNumber: 129
+                lineNumber: 137
               },
               __self: this
             }, '__self', this),
@@ -51396,7 +51402,7 @@ var RegistrationForm = function (_React$Component) {
                 },
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 130
+                  lineNumber: 138
                 },
                 __self: this
               }, '__self', this),
@@ -51416,7 +51422,8 @@ RegistrationForm.propTypes = {
   dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
   error: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.object,
   registering: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool,
-  registered: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool
+  registered: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool,
+  useEmailAsName: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool
 };
 
 RegistrationForm.defaultProps = {
@@ -51426,7 +51433,8 @@ RegistrationForm.defaultProps = {
     password: ''
   },
   registering: false,
-  registered: false
+  registered: false,
+  useEmailAsName: false
 };
 
 var mapStateToProps = function mapStateToProps(state) {
