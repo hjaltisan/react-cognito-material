@@ -37,4 +37,4 @@ const mapDispatchToProps = (dispatch) => ({
   handleSignout: () => dispatch(cognitoSignout(true)),
 })
 
-export default connect(mapDispatchToProps)(component)
+export default connect(null, mapDispatchToProps)(component)
