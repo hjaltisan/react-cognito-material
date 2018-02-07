@@ -52138,26 +52138,29 @@ var UserProfileActions = function (_React$Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserProfileActions.__proto__ || Object.getPrototypeOf(UserProfileActions)).call.apply(_ref, [this].concat(args))), _this), _this.handleSignout = function () {
-      _this.props.handleSignout();
+      _this.props.handleSignout(_this.props.signoutFromEverywhere);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(UserProfileActions, [{
     key: 'render',
     value: function render() {
+      var signoutFromEverywhere = this.props.signoutFromEverywhere;
+
+      var text = 'Sign out' + (signoutFromEverywhere ? ' from everywhere' : '');
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_4_material_ui_List___default.a,
         _defineProperty({
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 17
+            lineNumber: 19
           },
           __self: this
         }, '__self', this),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_material_ui_Divider___default.a, _defineProperty({
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 18
+            lineNumber: 20
           },
           __self: this
         }, '__self', this)),
@@ -52165,13 +52168,13 @@ var UserProfileActions = function (_React$Component) {
           __WEBPACK_IMPORTED_MODULE_4_material_ui_List__["ListItem"],
           _defineProperty({ button: true, __source: {
               fileName: _jsxFileName,
-              lineNumber: 19
+              lineNumber: 21
             },
             __self: this
           }, '__self', this),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_List__["ListItemText"], _defineProperty({ primary: 'Sign out from everywhere', onClick: this.handleSignout, __source: {
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_List__["ListItemText"], _defineProperty({ primary: text, onClick: this.handleSignout, __source: {
               fileName: _jsxFileName,
-              lineNumber: 20
+              lineNumber: 22
             },
             __self: this
           }, '__self', this))
@@ -52184,17 +52187,20 @@ var UserProfileActions = function (_React$Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 UserProfileActions.propTypes = {
-  handleSignout: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
+  handleSignout: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
+  signoutFromEverywhere: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool
 };
 
-UserProfileActions.defaultProps = {};
+UserProfileActions.defaultProps = {
+  signoutFromEverywhere: true
+};
 
 var component = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_material_ui_styles__["withStyles"])(__WEBPACK_IMPORTED_MODULE_6__style__["a" /* FormStyle */])(UserProfileActions);
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    handleSignout: function handleSignout() {
-      return dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__actions__["M" /* cognitoSignout */])(true));
+    handleSignout: function handleSignout(global) {
+      return dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__actions__["M" /* cognitoSignout */])(global));
     }
   };
 };
@@ -52342,8 +52348,7 @@ var UserProfileForm = function (_React$Component) {
               },
               __self: this
             }, '__self', this),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8____["UserProfileActions"], _defineProperty({
-              __source: {
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8____["UserProfileActions"], _defineProperty({ signoutFromEverywhere: this.props.signoutFromEverywhere, __source: {
                 fileName: _jsxFileName,
                 lineNumber: 44
               },
@@ -52391,13 +52396,15 @@ UserProfileForm.propTypes = {
   signedIn: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool,
   userAttributes: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.array,
   userProfileAttributes: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.array,
-  dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired
+  dispatch: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
+  signoutFromEverywhere: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool
 };
 
 UserProfileForm.defaultProps = {
   signedIn: false,
   userAttributes: [],
-  userProfileAttributes: []
+  userProfileAttributes: [],
+  signoutFromEverywhere: true
 };
 
 var component = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_material_ui_styles__["withStyles"])(__WEBPACK_IMPORTED_MODULE_6__style__["a" /* FormStyle */])(UserProfileForm);
