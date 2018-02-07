@@ -22,9 +22,16 @@ class RegistrationForm extends React.Component {
     password2: '',
   }
   handleChange = (name) => (event) => {
-    this.setState({
-      [name]: event.target.value,
-    })
+    if (this.props.useEmailAsName && name === 'email') {
+      this.setState({
+        ['name']: event.target.value,
+        [name]: event.target.value,
+      })
+    } else {
+      this.setState({
+        [name]: event.target.value,
+      })
+    }
   }
   handleRegister = () => {
     console.log('handleRegister', this.state)
@@ -71,6 +78,7 @@ class RegistrationForm extends React.Component {
           :
           <CardContent>
             <VerticalForm>
+              {this.props.useEmailAsName ? null :
               <TextField
                 id="name"
                 label="Name"
@@ -82,7 +90,7 @@ class RegistrationForm extends React.Component {
                 error={!this.validName() || (!!error.name && error.name.length > 0)}
                 fullWidth
                 helperText={error.name}
-              />
+              />}
               <TextField
                 id="email"
                 label="Email"
@@ -152,6 +160,7 @@ RegistrationForm.propTypes = {
   error: PropTypes.object,
   registering: PropTypes.bool,
   registered: PropTypes.bool,
+  useEmailAsName: PropTypes.bool,
 }
 
 RegistrationForm.defaultProps = {
@@ -162,6 +171,7 @@ RegistrationForm.defaultProps = {
   },
   registering: false,
   registered: false,
+  useEmailAsName: false,
 }
 
 const mapStateToProps = (state) => ({
