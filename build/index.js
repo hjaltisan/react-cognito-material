@@ -50488,7 +50488,7 @@ var LoginForm = function (_React$Component) {
                 },
                 __self: this
               }, '__self', this),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              this.props.enableForgot ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_7_material_ui_Button___default.a,
                 _defineProperty({ color: 'accent', onClick: this.handleForgot, __source: {
                     fileName: _jsxFileName,
@@ -50497,7 +50497,7 @@ var LoginForm = function (_React$Component) {
                   __self: this
                 }, '__self', this),
                 'Forgot?'
-              ),
+              ) : null,
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_7_material_ui_Button___default.a,
                 _defineProperty({
@@ -50509,7 +50509,7 @@ var LoginForm = function (_React$Component) {
                   disabled: !this.validForm(),
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 86
+                    lineNumber: 84
                   },
                   __self: this
                 }, '__self', this),
@@ -50522,7 +50522,7 @@ var LoginForm = function (_React$Component) {
           _defineProperty({
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 98
+              lineNumber: 96
             },
             __self: this
           }, '__self', this),
@@ -50530,7 +50530,7 @@ var LoginForm = function (_React$Component) {
             __WEBPACK_IMPORTED_MODULE_7_material_ui_Button___default.a,
             _defineProperty({ color: 'accent', raised: true, onClick: this.handleSignout, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 99
+                lineNumber: 97
               },
               __self: this
             }, '__self', this),
@@ -50552,13 +50552,15 @@ LoginForm.propTypes = {
   signedIn: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool,
   handleSignout: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func.isRequired,
   // dispatch: PropTypes.func,
-  error: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired
+  error: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
+  enableForgot: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool.isRequired
 };
 
 LoginForm.defaultProps = {
   // dispatch: () => {},
   signedIn: false,
-  signingIn: false
+  signingIn: false,
+  enableForgot: false
 };
 
 var component = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_material_ui_styles__["withStyles"])(__WEBPACK_IMPORTED_MODULE_10__style__["a" /* FormStyle */])(LoginForm);

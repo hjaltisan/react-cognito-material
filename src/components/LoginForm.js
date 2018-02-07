@@ -80,9 +80,7 @@ class LoginForm extends React.Component {
               </CardContent>
               <CardActions>
                 <Grid container direction="row" justify="space-around">
-                  <Button color="accent" onClick={this.handleForgot}>
-                  Forgot?
-                  </Button>
+                  {this.props.enableForgot ? <Button color="accent" onClick={this.handleForgot}>Forgot?</Button> : null}
                   <Button
                     raised
                     color="primary"
@@ -115,12 +113,14 @@ LoginForm.propTypes = {
   handleSignout: PropTypes.func.isRequired,
   // dispatch: PropTypes.func,
   error: PropTypes.string.isRequired,
+  enableForgot: PropTypes.bool.isRequired,
 }
 
 LoginForm.defaultProps = {
   // dispatch: () => {},
   signedIn: false,
   signingIn: false,
+  enableForgot: false,
 }
 
 export const component = withStyles(FormStyle)(LoginForm)
