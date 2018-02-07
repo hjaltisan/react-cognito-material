@@ -41,7 +41,7 @@ class UserProfileForm extends React.Component {
               </CardContent>
             }
             <CardActions>
-              <UserProfileActions />
+              <UserProfileActions signoutFromEverywhere={this.props.signoutFromEverywhere} />
             </CardActions>
           </div>
         :
@@ -65,12 +65,14 @@ UserProfileForm.propTypes = {
   userAttributes: PropTypes.array,
   userProfileAttributes: PropTypes.array,
   dispatch: PropTypes.func.isRequired,
+  signoutFromEverywhere: PropTypes.bool,
 }
 
 UserProfileForm.defaultProps = {
   signedIn: false,
   userAttributes: [],
   userProfileAttributes: [],
+  signoutFromEverywhere: true,
 }
 
 export const component = withStyles(FormStyle)(UserProfileForm)

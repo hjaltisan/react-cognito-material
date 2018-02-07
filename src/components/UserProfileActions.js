@@ -10,14 +10,16 @@ import { cognitoSignout } from '../actions'
 
 class UserProfileActions extends React.Component {
   handleSignout = () => {
-    this.props.handleSignout()
+    this.props.handleSignout(this.props.signoutFromEverywhere)
   }
   render() {
+    const { signoutFromEverywhere } = this.props
+    const text = `Sign out${signoutFromEverywhere ? ' from everywhere' : ''}`
     return (
       <List>
         <Divider />
         <ListItem button>
-          <ListItemText primary="Sign out from everywhere" onClick={this.handleSignout} />
+          <ListItemText primary={text} onClick={this.handleSignout} />
         </ListItem>
       </List>
     )
@@ -26,15 +28,17 @@ class UserProfileActions extends React.Component {
 
 UserProfileActions.propTypes = {
   handleSignout: PropTypes.func.isRequired,
+  signoutFromEverywhere: PropTypes.bool,
 }
 
 UserProfileActions.defaultProps = {
+  signoutFromEverywhere: true,
 }
 
 export const component = withStyles(FormStyle)(UserProfileActions)
 
 const mapDispatchToProps = (dispatch) => ({
-  handleSignout: () => dispatch(cognitoSignout(true)),
+  handleSignout: (global) => dispatch(cognitoSignout(global)),
 })
 
 export default connect(null, mapDispatchToProps)(component)
